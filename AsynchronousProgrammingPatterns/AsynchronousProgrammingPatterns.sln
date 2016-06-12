@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsynchronousProgrammingMode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBasedAsynchronousPattern", "EventBasedAsynchronousPattern\EventBasedAsynchronousPattern.csproj", "{2287BC60-70D3-41F3-877E-8BF7C7193EA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskBasedAsynchronousPattern", "TaskBasedAsynchronousPattern\TaskBasedAsynchronousPattern.csproj", "{4D0B1FBA-7CEF-49DC-81A5-8E95405EF661}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2287BC60-70D3-41F3-877E-8BF7C7193EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2287BC60-70D3-41F3-877E-8BF7C7193EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2287BC60-70D3-41F3-877E-8BF7C7193EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0B1FBA-7CEF-49DC-81A5-8E95405EF661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0B1FBA-7CEF-49DC-81A5-8E95405EF661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0B1FBA-7CEF-49DC-81A5-8E95405EF661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0B1FBA-7CEF-49DC-81A5-8E95405EF661}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

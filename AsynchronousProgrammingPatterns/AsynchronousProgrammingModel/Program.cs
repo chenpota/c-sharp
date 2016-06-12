@@ -22,7 +22,7 @@ namespace AsynchronousProgrammingModel
             {
                 IAsyncResult ar = translator.BeginIntToString(2, null);
 
-                while (ar.IsCompleted == false) ;
+                while (ar.IsCompleted == false)
                 {
                     // do something
                 }
