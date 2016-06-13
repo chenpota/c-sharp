@@ -16,7 +16,6 @@ namespace TaskBasedAsynchronousPattern
                 number,
                 (ar) =>
                 {
-                    Thread.Sleep(5000);
                     tcs.SetResult(func.EndInvoke(ar));
                 },
                 null);
