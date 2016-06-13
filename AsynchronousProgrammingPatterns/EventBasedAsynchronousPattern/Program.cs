@@ -11,42 +11,22 @@ namespace EventBasedAsynchronousPattern
 
             #region wait-until-done
             {
-                CustomEventArgs eventArgs = new CustomEventArgs();
-                eventArgs.Callback += WaitUntilDone;
-                eventArgs.Integer = 1;
-                
+                translator.IntToStringCompleted += WaitUntilDone;
+
                 lock (_syncObj)
                 {
-                    translator.IntToStringAsync(eventArgs);
+                    translator.IntToStringAsync(1);
 
                     Monitor.Wait(_syncObj);
                 }
             }
             #endregion
 
-            #region polling
-            {
-                CustomEventArgs eventArgs = new CustomEventArgs();
-                eventArgs.Integer = 2;
-
-                translator.IntToStringAsync(eventArgs);
-
-                while (eventArgs.IsComplete == false)
-                {
-                    // do something
-                }
-
-                Console.WriteLine("polling: " + eventArgs.Result);
-            }
-            #endregion
-
             #region callback
             {
-                CustomEventArgs eventArgs = new CustomEventArgs();
-                eventArgs.Callback += Callback;
-                eventArgs.Integer = 3;
+                translator.IntToStringCompleted += Callback;
 
-                translator.IntToStringAsync(eventArgs);
+                translator.IntToStringAsync(2);
 
                 // do something
             }
@@ -59,11 +39,19 @@ namespace EventBasedAsynchronousPattern
 
         private static void Callback(object sender, CustomEventArgs e)
         {
+            Translator translator = sender as Translator;
+
+            translator.IntToStringCompleted -= Callback;
+
             Console.WriteLine("callback: " + e.Result);
         }
 
         private static void WaitUntilDone(object sender, CustomEventArgs e)
         {
+            Translator translator = sender as Translator;
+
+            translator.IntToStringCompleted -= WaitUntilDone;
+
             Console.WriteLine("wait-until-done: " + e.Result);
 
             lock (_syncObj)

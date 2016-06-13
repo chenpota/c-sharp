@@ -1,24 +1,25 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 
 namespace AsynchronousProgrammingModel
 {
     class Translator
     {
-        public delegate string AsyncCaller(int integer);
-
         public IAsyncResult BeginIntToString(int integer, AsyncCallback callback = null)
         {
             AsyncCaller caller = new AsyncCaller(IntToString);
 
-            return caller.BeginInvoke(integer, callback, caller);
+            return caller.BeginInvoke(integer, callback, this);
         }
 
         public string EndIntToString(IAsyncResult ar)
         {
-            AsyncCaller caller = ar.AsyncState as AsyncCaller;
+            AsyncCaller caller = ((AsyncResult)ar).AsyncDelegate as AsyncCaller;
 
             return caller.EndInvoke(ar);
         }
+
+        private delegate string AsyncCaller(int integer);
 
         private string IntToString(int integer)
         {

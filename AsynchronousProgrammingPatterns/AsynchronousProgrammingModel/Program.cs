@@ -35,7 +35,7 @@ namespace AsynchronousProgrammingModel
 
             #region callback
             {
-                IAsyncResult ar = translator.BeginIntToString(3, ApmCallback);
+                IAsyncResult ar = translator.BeginIntToString(3, Callback);
 
                 // do something
             }
@@ -44,11 +44,11 @@ namespace AsynchronousProgrammingModel
             Console.ReadKey();
         }
 
-        private static void ApmCallback(IAsyncResult ar)
+        private static void Callback(IAsyncResult ar)
         {
-            Translator.AsyncCaller caller = ar.AsyncState as Translator.AsyncCaller;
+            Translator translator = ar.AsyncState as Translator;
 
-            string result = caller.EndInvoke(ar);
+            string result = translator.EndIntToString(ar);
 
             Console.WriteLine("callback: " + result);
         }

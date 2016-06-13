@@ -4,29 +4,25 @@ namespace EventBasedAsynchronousPattern
 {
     class Translator
     {
-        public void IntToStringAsync(CustomEventArgs e)
+        public event EventHandler<CustomEventArgs> IntToStringCompleted;
+
+        public void IntToStringAsync(int number)
         {
-            e._isComplete = false;
+            Action<int> action = IntToString;
 
-            Func<CustomEventArgs, CustomEventArgs> func = IntToString;
-
-            func.BeginInvoke(e, IntToStringCallback, func);
+            action.BeginInvoke(number, null, null);
         }
 
-        private void IntToStringCallback(IAsyncResult ar)
+        private void IntToString(int number)
         {
-            Func<CustomEventArgs, CustomEventArgs> func = ar.AsyncState as Func<CustomEventArgs, CustomEventArgs>;
+            CustomEventArgs args = new CustomEventArgs()
+            {
+                Result = number.ToString(),
+            };
 
-            CustomEventArgs e = func.EndInvoke(ar);
+            EventHandler<CustomEventArgs> completed = IntToStringCompleted;
 
-            e.NotifyResult(this);
-        }
-
-        private CustomEventArgs IntToString(CustomEventArgs e)
-        {
-            e._result = e.Integer.ToString();
-
-            return e;
+            completed?.Invoke(this, args);
         }
     }
 }
