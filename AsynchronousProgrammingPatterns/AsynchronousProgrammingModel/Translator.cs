@@ -3,7 +3,7 @@ using System.Runtime.Remoting.Messaging;
 
 namespace AsynchronousProgrammingModel
 {
-    class Translator
+    public class Translator
     {
         public IAsyncResult BeginIntToString(int integer, AsyncCallback callback = null)
         {

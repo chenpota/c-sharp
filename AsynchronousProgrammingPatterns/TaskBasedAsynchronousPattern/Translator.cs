@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace TaskBasedAsynchronousPattern
 {
-    class Translator
+    public class Translator
     {
         public Task<string> IntToStringAsync(int number)
         {

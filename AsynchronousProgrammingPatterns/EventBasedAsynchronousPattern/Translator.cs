@@ -2,7 +2,7 @@
 
 namespace EventBasedAsynchronousPattern
 {
-    class Translator
+    public class Translator
     {
         public event EventHandler<CustomEventArgs> IntToStringCompleted;
 
